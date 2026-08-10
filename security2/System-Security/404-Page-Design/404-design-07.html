@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page Not Found</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        #overlay {
+            mask-image: radial-gradient(
+                circle 180px at 50% 50%,
+                transparent 0%,
+                black 220px
+            );
+            -webkit-mask-image: radial-gradient(
+                circle 180px at 50% 50%,
+                transparent 0%,
+                black 220px
+            );
+        }
+    </style>
+</head>
+<body class="relative w-screen h-screen bg-gray-900 text-white overflow-hidden">
+    <!-- Main content hidden by default, revealed by spotlight -->
+    <div class="absolute inset-0 flex flex-col items-center justify-center z-10">
+        <h1 class="text-6xl font-bold mb-4">Page Not Found</h1>
+        <p class="text-xl">
+            Sorry, we couldn't find the page you're looking for.
+        </p>
+        <a href="/" class="mt-6 px-4 py-2 bg-blue-600 hover:bg-blue-500 rounded">Go Home</a>
+    </div>
+
+    <!-- Hidden meme image in bottom left -->
+    <img src="../img/speed-meme.png" alt="" class="absolute bottom-8 left-8 w-60 h-auto z-10">
+    
+    <!-- Hidden meme image in top right -->
+    <img src="../img/ishowspeed-meme.png" alt="" class="absolute top-8 right-8 w-60 h-auto z-10">
+
+    <!-- Dark overlay with spotlight mask -->
+    <div id="overlay" class="absolute inset-0 bg-black z-20 pointer-events-none"></div>
+
+    <script>
+        const overlay = document.getElementById("overlay");
+        window.addEventListener("mousemove", (e) => {
+            const x = e.clientX;
+            const y = e.clientY;
+            const pos = `${x}px ${y}px`;
+            overlay.style.maskImage = `radial-gradient(circle 150px at ${pos}, transparent 0%, black 200px)`;
+            overlay.style.webkitMaskImage = overlay.style.maskImage;
+        });
+    </script>
+</body>
+</html>

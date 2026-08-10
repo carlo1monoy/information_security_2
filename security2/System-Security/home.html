@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>CSUCC SafeMart - Student Marketplace</title>
+  <link rel="stylesheet" href="css/home.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+  <script src="js/home.js"></script>
+</head>
+<body>
+  <img class="bg-image" src="img/CSUCC-Background.jpg" alt="CSUCC Background">
+  
+  <header class="header">
+    <div class="container">
+      <div class="logo">
+        <img src="img/CSUCCSafeMart-logo.png" alt="CSUCC SafeMart logo" />
+      </div>
+      <nav class="navigation">
+        <a href="home.html" class="nav-link active">Home</a>
+        <a href="login.html" class="nav-link">Log-in</a>
+        <a href="register.html" class="nav-link">Register</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="main-content">
+    <section class="hero">
+      <div class="hero-content">
+        <div class="hero-badge">Exclusively for CSUCC Students</div>
+        <div class="hero-greeting" id="heroGreeting" style="display: none;">
+          <span class="greeting-text">Welcome, <span id="userName">Student</span>!</span>
+        </div>
+        <h1 class="hero-title">CSUCC <span class="highlight">SafeMart</span></h1>
+        <p class="hero-subtitle">Your Secure Campus Marketplace</p>
+        <p class="hero-description">Buy, sell, and swap pre-loved items with verified CSUCC students in a protected environment designed just for our campus community.</p>
+        <div class="hero-actions">
+          <a href="register.html" class="btn btn-primary">Join Now</a>
+          <a href="login.html" class="btn btn-secondary">Student Login</a>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="floating-card card-1" data-category="clothes">
+          <img class="card-image" src="img/clothes-picsz.jpg" alt="Clothes">
+          <div class="card-content">
+            <h4>Clothes</h4>
+            <p>Save up to 70%</p>
+          </div>
+          <div class="card-expanded-content">
+            <div class="expanded-header">
+              <h3>Fashion & Clothing</h3>
+              <button class="close-card" aria-label="Close">&times;</button>
+            </div>
+            <div class="expanded-details">
+              <div class="detail-item">
+                <i class="bi bi-tags"></i>
+                <div>
+                  <h5>Huge Savings</h5>
+                  <p>Save 50-70% on brand-name clothing from fellow students</p>
+                </div>
+              </div>
+              <div class="detail-item">
+                <i class="bi bi-check-circle"></i>
+                <div>
+                  <h5>Quality Assured</h5>
+                  <p>All items are inspected and verified for condition</p>
+                </div>
+              </div>
+              <div class="detail-item">
+                <i class="bi bi-heart"></i>
+                <div>
+                  <h5>Trending Styles</h5>
+                  <p>Find the latest fashion trends popular among students</p>
+                </div>
+              </div>
+            </div>
+            <div class="expanded-stats">
+              <div class="stat">
+                <span class="stat-number">90+</span>
+                <span class="stat-label">Items Available</span>
+              </div>
+              <div class="stat">
+                <span class="stat-number">95%</span>
+                <span class="stat-label">Satisfaction Rate</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="floating-card card-2" data-category="electronics">
+          <img class="card-image" src="img/electronics-pic.jpg" alt="Electronics">
+          <div class="card-content">
+            <h4>Electronics</h4>
+            <p>Quality checked</p>
+          </div>
+          <div class="card-expanded-content">
+            <div class="expanded-header">
+              <h3>Electronics & Gadgets</h3>
+              <button class="close-card" aria-label="Close">&times;</button>
+            </div>
+            <div class="expanded-details">
+              <div class="detail-item">
+                <i class="bi bi-shield-check"></i>
+                <div>
+                  <h5>Tested & Verified</h5>
+                  <p>All electronics are thoroughly tested before listing</p>
+                </div>
+              </div>
+              <div class="detail-item">
+                <i class="bi bi-cpu"></i>
+                <div>
+                  <h5>Latest Tech</h5>
+                  <p>Find laptops, phones, accessories and study gadgets</p>
+                </div>
+              </div>
+              <div class="detail-item">
+                <i class="bi bi-lightning"></i>
+                <div>
+                  <h5>Quick Deals</h5>
+                  <p>Fast transactions with instant meetup arrangements</p>
+                </div>
+              </div>
+            </div>
+            <div class="expanded-stats">
+              <div class="stat">
+                <span class="stat-number">30+</span>
+                <span class="stat-label">Devices Listed</span>
+              </div>
+              <div class="stat">
+                <span class="stat-number">100%</span>
+                <span class="stat-label">Working Condition</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="floating-card card-3" data-category="shoes">
+          <img class="card-image" src="img/shoes-picsz.jpg" alt="Shoes">
+          <div class="card-content">
+            <h4>Shoes</h4>
+            <p>Trendy & affordable</p>
+          </div>
+          <div class="card-expanded-content">
+            <div class="expanded-header">
+              <h3>Footwear Collection</h3>
+              <button class="close-card" aria-label="Close">&times;</button>
+            </div>
+            <div class="expanded-details">
+              <div class="detail-item">
+                <i class="bi bi-star"></i>
+                <div>
+                  <h5>Designer Brands</h5>
+                  <p>Nike, Adidas, Converse and more at student prices</p>
+                </div>
+              </div>
+              <div class="detail-item">
+                <i class="bi bi-arrow-repeat"></i>
+                <div>
+                  <h5>Size Exchange</h5>
+                  <p>Easy size exchanges within the campus community</p>
+                </div>
+              </div>
+              <div class="detail-item">
+                <i class="bi bi-bookmark-heart"></i>
+                <div>
+                  <h5>Style Variety</h5>
+                  <p>Sneakers, formal, casual, sports - all styles available</p>
+                </div>
+              </div>
+            </div>
+            <div class="expanded-stats">
+              <div class="stat">
+                <span class="stat-number">30+</span>
+                <span class="stat-label">Pairs Available</span>
+              </div>
+              <div class="stat">
+                <span class="stat-number">85%</span>
+                <span class="stat-label">Like New Quality</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="features">
+      <div class="container">
+        <div class="section-header">
+          <h2>Why Choose CSUCC SafeMart?</h2>
+          <p>Our marketplace is designed specifically for the CSUCC community with security and convenience in mind.</p>
+        </div>
+        <div class="features-grid">
+          <div class="feature-card">
+            <i class="bi bi-person-check" style="font-size: 55px;"></i>
+            <h3>Verified Students Only</h3>
+            <p>All users are authenticated CSUCC students, ensuring a trusted community where you can trade with confidence.</p>
+          </div>
+          <div class="feature-card">
+            <i class="bi bi-file-earmark-lock2" style="font-size: 55px;"></i>
+            <h3>Secure Transactions</h3>
+            <p>Buy, sell, and swap items with confidence in our protected environment designed for campus safety.</p>
+          </div>
+          <div class="feature-card">
+            <i class="bi bi-pin-map-fill" style="font-size: 55px;"></i>
+            <h3>Campus Convenience</h3>
+            <p>Easy meetups and exchanges right here on campus, saving you time and transportation costs.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="testimonials">
+      <div class="container">
+        <div class="section-header">
+          <h2>Trusted by CSUCC Students</h2>
+          <p>Hear from our satisfied community members</p>
+        </div>
+        <div class="testimonials-grid">
+          <div class="testimonial-card">
+            <div class="testimonial-left">
+              <div class="author-avatar">
+                <img src="img/carlo-pic.png" alt="Anthony Charles Monoy">
+              </div>
+            </div>
+            <div class="testimonial-right">
+              <div class="testimonial-icon">
+                <i class="bi bi-quote"></i>
+              </div>
+              <div class="testimonial-content">
+                <p>As a student, I've bought items that interest me, and SafeMart always makes me feel safe when meeting other students on campus.</p>
+              </div>
+              <div class="testimonial-author">
+                <div class="author-info">
+                  <span class="author-name">Anthony Charles Monoy</span>
+                  <span class="author-course">BSInfoTech</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="testimonial-card">
+            <div class="testimonial-left">
+              <div class="author-avatar">
+                <img src="img/regie-pic.png" alt="Regie Salabit">
+              </div>
+            </div>
+            <div class="testimonial-right">
+              <div class="testimonial-icon">
+                <i class="bi bi-quote"></i>
+              </div>
+              <div class="testimonial-content">
+                <p>As an IT student, SafeMart has made it easier for me to sell unused items while also helping other students save money. It's truly a win-win experience.</p>
+              </div>
+              <div class="testimonial-author">
+                <div class="author-info">
+                  <span class="author-name">Regie Salabit</span>
+                  <span class="author-course">BSInfoTech</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <p>&copy; 2025 CSUCC SafeMart. All rights reserved. A secure marketplace for the CSUCC community.</p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,1292 @@
+/* ===== Password rules (below strength indicator) ===== */
+.password-rules-container {
+	margin-top: 2px;
+}
+
+.password-rules {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.password-rules .rule-item {
+	font-size: 11px;
+	margin-top: 0px;
+	line-height: 1.2;
+}
+
+.password-rules .rule-item.invalid {
+	color: #d32f2f; /* red */
+}
+
+.password-rules .rule-item.valid {
+	color: #2e7d32; /* green */
+}
+
+/* Hide legacy password error element to avoid duplicate/extra spacing */
+#password-error {
+	display: none;
+}
+/* ========================================
+   RESET AND BASE STYLES
+   ======================================== */
+* { 
+  box-sizing: border-box; 
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f5f5f5;
+  min-height: 100vh;
+  position: relative;
+}
+
+/* ========================================
+   BACKGROUND IMAGE AND OVERLAY
+   ======================================== */
+/* Fixed background image */
+.bg-image {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+  z-index: -2;
+}
+
+/* Gradient overlay for better readability */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(20, 90, 50, 0.85) 0%, rgba(20, 90, 50, 0.75) 50%, transparent 100%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ========================================
+   INITIAL HIDDEN ELEMENTS (replaces inline styles in HTML)
+   ======================================== */
+#custom-extension-row { display: none; }
+#prevBtn { display: none; }
+#submitBtn { display: none; }
+
+/* ========================================
+   HEADER SECTION - UNCHANGED
+   ======================================== */
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(135deg, #145A32 0%, #1a6d3d 100%);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  height: 70px;
+}
+
+.header .container {
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 0 24px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  font-size: 55px;
+  margin-left: 0;
+}
+
+.logo img {
+  display: block;
+  height: 1em;
+  width: auto;
+}
+
+.navigation {
+  display: flex;
+  gap: 24px;
+}
+
+.nav-link {
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 500;
+  padding: 8px 16px;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+
+.nav-link:hover {
+  background-color: rgba(255, 215, 0, 0.2);
+  color: #FFD700;
+}
+
+
+/* ========================================
+   MAIN PAGE LAYOUT
+   UPDATED: Better spacing for compact card view
+   ======================================== */
+.page {
+  min-height: 100vh;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 80px 20px 20px;
+  position: relative;
+  z-index: 1;
+  overflow-y: auto;
+  box-sizing: border-box;
+}
+
+/* ========================================
+   CARD CONTAINER
+   UPDATED: Reduced size for better viewport fit and user-friendly layout
+   ======================================== */
+.card {
+  width: 100%;
+  max-width: 1000px; /* Further reduced for better fit */
+  padding: 14px 24px 16px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: 
+    0 8px 30px rgba(0, 0, 0, 0.2),
+    0 3px 12px rgba(0, 0, 0, 0.15);
+  backdrop-filter: blur(10px);
+  margin: 0 auto;
+}
+
+/* ========================================
+   FORM HEADER
+   UPDATED: More compact header
+   ======================================== */
+.form-header {
+  text-align: center;
+  margin-bottom: 0px;
+}
+
+.header-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+
+.header-title i {
+  font-size: 22px !important;
+  color: #145A32;
+  background: rgba(20, 90, 50, 0.1);
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.header-title h1 {
+  font-size: 20px;
+  font-weight: 600;
+  color: #145A32;
+  margin: 0;
+  margin-right: 8px;
+}
+
+.form-header .subtitle {
+  font-size: 13px;
+  color: #6b7280;
+  font-weight: 400;
+  margin: 0;
+}
+
+/* ========================================
+   STEP PROGRESS INDICATOR
+   NEW: Visual indicator showing current step
+   ======================================== */
+.step-indicator {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 22px;
+  padding: 0 8px;
+}
+
+/* Individual step styling */
+.step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  flex: 0 0 auto;
+}
+
+/* Step number circle */
+.step-number {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background-color: #e0e0e0;
+  color: #999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 11px;
+  transition: all 0.3s ease;
+  border: 2px solid #e0e0e0;
+}
+
+/* Step label text */
+.step-label {
+  font-size: 10px;
+  color: #999;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  text-align: center;
+}
+
+/* Active step styling - highlighted in brand color */
+.step.active .step-number {
+  background-color: #145A32;
+  color: #ffffff;
+  border-color: #145A32;
+  box-shadow: 0 0 0 4px rgba(20, 90, 50, 0.2);
+}
+
+.step.active .step-label {
+  color: #145A32;
+}
+
+/* Completed step styling - highlighted in gold */
+.step.completed .step-number {
+  background-color: #FFD700;
+  color: #145A32;
+  border-color: #FFD700;
+}
+
+.step.completed .step-label {
+  color: #145A32;
+}
+
+/* Connecting line between steps */
+.step-line {
+  flex: 1;
+  height: 2px;
+  background-color: #e0e0e0;
+  margin: 0 6px;
+  margin-bottom: 10px;
+  transition: all 0.3s ease;
+}
+
+/* Completed line styling */
+.step-line.completed {
+  background-color: #FFD700;
+}
+
+/* ========================================
+   SECTION TITLES
+   UPDATED: Added icon support with compact sizing
+   ======================================== */
+.section-title {
+  font-size: 13px;
+  font-weight: bold;
+  color: #145A32;
+  margin: 6px 0 12px;
+  padding-bottom: 3px;
+  border-bottom: 2px solid #FFD700;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.section-title i {
+  font-size: 16px;
+}
+
+/* ========================================
+   FORM STEP CONTAINER
+   NEW: Manages visibility of form steps
+   ======================================== */
+.form-step {
+  display: none;
+  animation: fadeIn 0.4s ease-in-out;
+}
+
+/* Show active step only */
+.form-step.active {
+  display: block;
+}
+
+/* Fade-in animation for smoother transitions */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ========================================
+   FORM LAYOUT
+   ======================================== */
+.form {
+  width: 100%;
+}
+
+/* Two-column layout for form fields */
+.form-row {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 0;
+}
+
+/* Compact row for Birthdate + Age + Sex on one line */
+.compact-row > .form-group { flex: 1; }
+.compact-row .group-age { flex: 0 0 120px; }
+
+/* Grid utilities for symmetric 4-up and 2-up rows (more compact spacing) */
+.grid-4 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  margin-bottom: 2px;
+}
+
+.grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+  margin-bottom: 2px;
+}
+
+/* Ensure groups inside grids behave uniformly */
+.grid-4 .form-group, .grid-2 .form-group { margin-bottom: 0; }
+
+/* Column container for Personal Information section */
+.form-column {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+/* Individual form field container */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 0;
+}
+
+/* Form groups inside columns need spacing */
+.form-column .form-group {
+  margin-bottom: 2px;
+}
+
+/* For regular two-field rows (used in other steps) */
+.form-row > .form-group {
+  flex: 1;
+  margin-bottom: 2px;
+}
+
+/* Custom extension field - appears below Name Extension when "Other" is selected */
+#custom-extension-row {
+  margin-top: -20px;
+  margin-bottom: -4px;
+}
+
+/* Style the input inside custom extension row */
+#custom-extension-row input {
+  width: 100%;
+  height: 34px;
+  padding: 0 10px;
+  font-size: 12px;
+  color: #333;
+  background: #ffffff;
+  border: 2px solid #d0d0d0;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+  font-family: Arial, sans-serif;
+}
+
+#custom-extension-row input:focus {
+  outline: none;
+  border-color: #145A32;
+  box-shadow: 0 0 0 3px rgba(20, 90, 50, 0.1);
+}
+
+#custom-extension-row input::placeholder {
+  color: #999;
+}
+
+/* ========================================
+   COMBINED BIRTHDATE & AGE INPUT
+   Creates a single unified input with birthdate on left and age display on right
+   ======================================== */
+.date-age-container {
+  display: flex;
+  width: 100%;
+  height: 34px;
+  border: 2px solid #d0d0d0;
+  border-radius: 5px;
+  overflow: hidden;
+  background: #ffffff;
+  transition: all 0.3s ease;
+}
+
+/* Birthdate section - takes ~70-75% of width */
+.birthdate-section {
+  flex: 1 1 70%;
+  display: flex;
+  align-items: center;
+  background: #ffffff;
+  min-width: 0; /* Allows flex shrinking */
+}
+
+.birthdate-section input[type="date"] {
+  width: 100%;
+  height: 100%;
+  border: none;
+  outline: none;
+  padding: 0 10px;
+  font-size: 12px;
+  color: #333;
+  background: transparent;
+  font-family: Arial, sans-serif;
+  cursor: pointer;
+}
+
+/* Style date input placeholder/format display */
+.birthdate-section input[type="date"]::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+  opacity: 0.6;
+  margin-left: 4px;
+}
+
+.birthdate-section input[type="date"]::-webkit-calendar-picker-indicator:hover {
+  opacity: 1;
+}
+
+/* Age section - takes ~25% of width with distinct background */
+.age-section {
+  flex: 0 0 30%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #145A32 0%, #1a6d3d 100%);
+  padding: 2px 8px;
+  position: relative;
+}
+
+.age-section .age-label {
+  font-size: 9px;
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 500;
+  line-height: 1;
+  margin-bottom: 0;
+}
+
+.age-section .age-value {
+  font-size: 15px;
+  color: #ffffff;
+  font-weight: bold;
+  line-height: 1;
+  min-height: 14px;
+}
+
+/* Focus state - highlight border */
+.date-age-container:has(.birthdate-section input:focus) {
+  border-color: #145A32;
+  box-shadow: 0 0 0 3px rgba(20, 90, 50, 0.1);
+}
+
+/* Fallback for browsers that don't support :has() */
+.combined-date-age:focus-within .date-age-container {
+  border-color: #145A32;
+  box-shadow: 0 0 0 3px rgba(20, 90, 50, 0.1);
+}
+
+/* ========================================
+   FORM LABELS
+   UPDATED: Added styling for required/optional indicators
+   ======================================== */
+.form-group label {
+  font-size: 12px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 3px;
+  text-align: left;
+}
+
+/* Required field indicator (red asterisk) */
+.required {
+  color: #d32f2f;
+  font-weight: bold;
+}
+
+/* Optional field indicator */
+.optional {
+  font-weight: normal;
+  color: #d32f2f;
+  font-size: 11px;
+  margin-bottom: 2px;
+}
+
+/* ========================================
+   SELECT DROPDOWN STYLING
+   ======================================== */
+.select-container {
+  position: relative;
+}
+
+/* Remove default arrow, add padding for custom icon */
+.select-container select {
+  appearance: none;
+  padding-right: 35px;
+}
+
+/* Custom dropdown icon */
+.select-container i {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  color: #666;
+  font-size: 14px;
+}
+
+/* ========================================
+   INPUT FIELD STYLING
+   UPDATED: Slightly smaller for more compact form
+   ======================================== */
+.form input,
+.form select {
+  width: 100%;
+  height: 34px;
+  padding: 0 10px;
+  font-size: 12px;
+  color: #333;
+  background: #ffffff;
+  border: 2px solid #d0d0d0;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+  font-family: Arial, sans-serif;
+}
+
+/* Focus state - highlight with brand color */
+.form input:focus,
+.form select:focus {
+  outline: none;
+  border-color: #145A32;
+  box-shadow: 0 0 0 3px rgba(20, 90, 50, 0.1);
+}
+
+/* Placeholder text styling */
+.form input::placeholder {
+  color: #999;
+}
+
+/* Read-only field styling */
+.form input[readonly] {
+  background-color: #f5f5f5;
+  cursor: not-allowed;
+  color: #666;
+}
+
+/* ========================================
+   PASSWORD TOGGLE BUTTON
+   UNCHANGED: Allows showing/hiding password
+   ======================================== */
+.input-with-toggle {
+  position: relative;
+}
+
+.input-with-toggle input {
+  padding-right: 45px;
+}
+
+.toggle-password {
+  position: absolute;
+  top: 50%;
+  right: 4px;
+  transform: translateY(-50%);
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  padding: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.toggle-password:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+  border-radius: 4px;
+}
+
+.toggle-password i {
+  color: #666;
+  font-size: 16px;
+}
+
+/* ========================================
+   AUTHENTICATION QUESTIONS LAYOUT
+   UPDATED: Unified card-style rows for question + answer
+   ======================================== */
+.auth-row {
+  position: relative;
+  border-radius: 14px;
+  padding: 14px 18px 12px;
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.96) 0%, rgba(240, 248, 243, 0.9) 100%);
+  border: 1px solid rgba(20, 90, 50, 0.12);
+  box-shadow: 0 10px 24px rgba(20, 90, 50, 0.08);
+  margin-bottom: 16px;
+  overflow: hidden;
+}
+
+.auth-row::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background: linear-gradient(120deg, rgba(255, 215, 0, 0.08), transparent 48%, rgba(20, 90, 50, 0.05));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.auth-row:focus-within::after,
+.auth-row:hover::after {
+  opacity: 1;
+}
+
+.auth-row-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.auth-row-header label {
+  font-size: 12px;
+  font-weight: 700;
+  color: #333;
+  letter-spacing: 0.25px;
+  text-transform: uppercase;
+}
+
+.auth-row-divider {
+  height: 1px;
+  width: 100%;
+  margin: 8px 0 14px;
+  background: linear-gradient(
+    90deg,
+    rgba(20, 90, 50, 0.1) 0%,
+    rgba(255, 215, 0, 0.45) 50%,
+    rgba(20, 90, 50, 0.1) 100%
+  );
+  border-radius: 999px;
+}
+
+.auth-row-fields {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  align-items: stretch;
+}
+
+.auth-field {
+  display: flex;
+  flex-direction: column;
+}
+
+.auth-row .select-container {
+  height: 100%;
+}
+
+.auth-row .auth-control {
+  height: 40px;
+  border-radius: 5px;
+  border: 1px solid rgba(20, 90, 50, 0.18);
+  background: #ffffff;
+  box-shadow: 0 6px 16px rgba(20, 90, 50, 0.08);
+  padding: 0 14px;
+  color: #333;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
+}
+
+.auth-row .auth-control:focus {
+  border-color: #145A32;
+  box-shadow: 0 10px 22px rgba(20, 90, 50, 0.12);
+  transform: translateY(-1px);
+}
+
+.auth-row .select-container i {
+  color: #666;
+  font-size: 14px;
+  right: 14px;
+}
+
+.auth-row .input-with-toggle {
+  height: 100%;
+}
+
+.auth-row .input-with-toggle input {
+  height: 100%;
+  padding-right: 48px;
+}
+
+.auth-row .toggle-password {
+  right: 4px;
+  padding: 6px 8px;
+  border-radius: 8px;
+  color: rgba(20, 90, 50, 0.7);
+}
+
+.auth-row .toggle-password:hover {
+  background-color: rgba(20, 90, 50, 0.08);
+  color: #145A32;
+}
+
+.auth-row .error-message {
+  margin-top: 4px;
+  margin-bottom: 0;
+}
+
+@media (max-width: 768px) {
+  .auth-row {
+    padding: 12px 14px 10px;
+  }
+
+  .auth-row-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+
+  .auth-row-header label {
+    text-transform: none;
+    font-size: 11.5px;
+  }
+
+  .auth-row-fields {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .auth-row .toggle-password {
+    right: 6px;
+  }
+}
+
+/* ========================================
+   USERNAME AVAILABILITY INDICATOR
+   UPDATED: Reserve space to prevent layout shifts
+   ======================================== */
+.username-status {
+  font-size: 11px;
+  margin-top: 2px;
+  min-height: 0;
+  height: 0;
+  display: block;
+  font-weight: 500;
+  line-height: 1.2;
+  visibility: hidden;
+  overflow: hidden;
+}
+
+.username-status.checking {
+  color: #666;
+  visibility: visible;
+  min-height: 12px;
+  height: auto;
+}
+
+.username-status.available {
+  color: #28a745;
+  visibility: visible;
+  min-height: 12px;
+  height: auto;
+}
+
+.username-status.taken {
+  color: #d32f2f;
+  visibility: visible;
+  min-height: 12px;
+  height: auto;
+}
+
+/* ========================================
+   PASSWORD STRENGTH INDICATOR
+   UPDATED: Sleek animated pill-style progress bar
+   ======================================== */
+.password-strength-container {
+  margin-top: 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+/* Track */
+.password-strength-bar {
+  position: relative;
+  height: 4.6px;
+  width: 100%;
+  background: linear-gradient(180deg, #eef2f7 0%, #e4e8ee 100%);
+  border-radius: 9999px;
+  overflow: hidden;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.08);
+}
+
+/* Gloss subtle highlight */
+.password-strength-bar::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 50%;
+  background: linear-gradient(180deg, rgba(255,255,255,0.6), rgba(255,255,255,0));
+  pointer-events: none;
+}
+
+/* Fill */
+.password-strength-bar::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 0%;
+  border-radius: inherit;
+  transition: width 0.35s ease, background 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Hide legacy segmented children (HTML unchanged) */
+.strength-segment { display: none; }
+
+/* Weak */
+.password-strength-container.weak .password-strength-bar::before {
+  width: 33.3333%;
+  background: linear-gradient(90deg, #ff6b6b, #ef4444);
+  box-shadow: 0 0 0 1px rgba(239, 68, 68, 0.15), 0 4px 10px rgba(239, 68, 68, 0.25);
+}
+
+/* Medium */
+.password-strength-container.medium .password-strength-bar::before {
+  width: 66.6667%;
+  background: linear-gradient(90deg, #fbbf24, #f59e0b);
+  box-shadow: 0 0 0 1px rgba(245, 158, 11, 0.15), 0 4px 10px rgba(245, 158, 11, 0.25);
+}
+
+/* Strong */
+.password-strength-container.strong .password-strength-bar::before {
+  width: 100%;
+  background: linear-gradient(90deg, #34d399, #10b981);
+  box-shadow: 0 0 0 1px rgba(16, 185, 129, 0.15), 0 4px 10px rgba(16, 185, 129, 0.25);
+}
+
+.password-strength-label {
+  font-size: 11px;
+  font-weight: 700;
+  color: #4b5563;
+  text-align: left;
+  margin-top: 1px;
+  letter-spacing: 0.1px;
+}
+
+.password-strength-container.weak .password-strength-label { color: #ef4444; }
+.password-strength-container.medium .password-strength-label { color: #f59e0b; }
+.password-strength-container.strong .password-strength-label { color: #10b981; }
+
+/* ========================================
+   PASSWORD MATCH INDICATOR (Same design as Password Strength)
+   ======================================== */
+.password-match-container {
+  margin-top: 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+/* Track (same as password strength bar) */
+.password-match-bar {
+  position: relative;
+  height: 4.6px;
+  width: 100%;
+  background: linear-gradient(180deg, #eef2f7 0%, #e4e8ee 100%);
+  border-radius: 9999px;
+  overflow: hidden;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.08);
+}
+
+/* Gloss subtle highlight (same as password strength) */
+.password-match-bar::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 50%;
+  background: linear-gradient(180deg, rgba(255,255,255,0.6), rgba(255,255,255,0));
+  pointer-events: none;
+}
+
+/* Fill (same pattern as password strength) */
+.password-match-bar::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 0%;
+  border-radius: inherit;
+  transition: width 0.35s ease, background 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Hide legacy segmented children (same as password strength) */
+.match-segment { display: none; }
+
+/* Progressive password match states for smooth transitions */
+
+/* Partial match - when user starts typing but passwords don't match yet */
+.password-match-container.partial .password-match-bar::before {
+  width: 33.3333%;
+  background: linear-gradient(90deg, #ff6b6b, #ef4444);
+  box-shadow: 0 0 0 1px rgba(239, 68, 68, 0.15), 0 4px 10px rgba(239, 68, 68, 0.25);
+}
+
+/* No match state - when passwords are significantly different */
+.password-match-container.no-match .password-match-bar::before {
+  width: 66.6667%;
+  background: linear-gradient(90deg, #ff6b6b, #ef4444);
+  box-shadow: 0 0 0 1px rgba(239, 68, 68, 0.15), 0 4px 10px rgba(239, 68, 68, 0.25);
+}
+
+/* Match state - green (when passwords perfectly match) */
+.password-match-container.match .password-match-bar::before {
+  width: 100%;
+  background: linear-gradient(90deg, #34d399, #10b981);
+  box-shadow: 0 0 0 1px rgba(16, 185, 129, 0.15), 0 4px 10px rgba(16, 185, 129, 0.25);
+}
+
+/* Smooth fill animations */
+@keyframes fillToRed {
+  0% {
+    width: 0%;
+    background: linear-gradient(90deg, #eef2f7, #e4e8ee);
+    box-shadow: none;
+  }
+  50% {
+    width: 50%;
+    background: linear-gradient(90deg, #ff6b6b, #ef4444);
+    box-shadow: 0 0 0 1px rgba(239, 68, 68, 0.1), 0 2px 5px rgba(239, 68, 68, 0.15);
+  }
+  100% {
+    width: 100%;
+    background: linear-gradient(90deg, #ff6b6b, #ef4444);
+    box-shadow: 0 0 0 1px rgba(239, 68, 68, 0.15), 0 4px 10px rgba(239, 68, 68, 0.25);
+  }
+}
+
+@keyframes fillToGreen {
+  0% {
+    width: 0%;
+    background: linear-gradient(90deg, #eef2f7, #e4e8ee);
+    box-shadow: none;
+  }
+  50% {
+    width: 50%;
+    background: linear-gradient(90deg, #34d399, #10b981);
+    box-shadow: 0 0 0 1px rgba(16, 185, 129, 0.1), 0 2px 5px rgba(16, 185, 129, 0.15);
+  }
+  100% {
+    width: 100%;
+    background: linear-gradient(90deg, #34d399, #10b981);
+    box-shadow: 0 0 0 1px rgba(16, 185, 129, 0.15), 0 4px 10px rgba(16, 185, 129, 0.25);
+  }
+}
+
+.password-match-label {
+  font-size: 11px;
+  font-weight: 700;
+  color: #4b5563;
+  text-align: left;
+  margin-top: 1px;
+  letter-spacing: 0.1px;
+}
+
+.password-match-container.partial .password-match-label { color: #ef4444; }
+.password-match-container.no-match .password-match-label { color: #ef4444; }
+.password-match-container.match .password-match-label { color: #10b981; }
+
+/* ========================================
+   ERROR MESSAGES
+   UPDATED: Reserve space to prevent layout shifts
+   ======================================== */
+.error-message {
+  font-size: 11px;
+  color: #d32f2f;
+  margin-top: 2px;
+  min-height: 12px;
+  display: block;
+  font-weight: 500;
+  line-height: 1.2;
+  visibility: hidden;
+  margin-bottom: 6px;
+}
+
+.error-message:not(:empty) {
+  visibility: visible;
+}
+
+
+/* Username error message - adjusted to align better with other fields */
+#username-error {
+  margin-top: 0px;
+}
+
+/* Custom extension error message - adjusted spacing */
+#custom-extname-error {
+  margin-bottom: 10px;
+}
+
+/* Age error messages - adjusted alignment to match other fields */
+#birthdate-error {
+  margin-bottom: -11px;
+}
+
+#age-error {
+  margin-top: 0px;
+}
+
+/* Form-level error message - always reserve space to prevent layout shifts */
+#form-error {
+  min-height: 16px;
+  margin-top: 4px;
+  margin-bottom: 6px;
+  text-align: left;
+  /* Always visible in layout flow, but content may be hidden */
+  display: block;
+  visibility: hidden;
+}
+
+/* When form-error has content, make it visible */
+#form-error:not(:empty) {
+  visibility: visible;
+}
+
+/* ========================================
+   BUTTON GROUP
+   NEW: Container for navigation buttons
+   ======================================== */
+.button-group {
+  display: flex;
+  gap: 8px;
+  margin-top: 8px;
+  justify-content: space-between;
+}
+
+/* ========================================
+   BUTTON STYLING
+   UPDATED: Enhanced with primary/secondary variants
+   ======================================== */
+.button {
+  flex: 1;
+  height: 36px;
+  border: none;
+  border-radius: 5px;
+  font-size: 13px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: Arial, sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+
+/* Primary button - main action (Next/Submit) */
+.button-primary {
+  color: #ffffff;
+  background: linear-gradient(135deg, #145A32 0%, #1a6d3d 100%);
+  box-shadow: 0 4px 12px rgba(20, 90, 50, 0.3);
+}
+
+.button-primary:hover {
+  background: linear-gradient(135deg, #FFD700 0%, #f0c800 100%);
+  color: #145A32;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(255, 215, 0, 0.4);
+}
+
+.button-primary:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(20, 90, 50, 0.3);
+}
+
+/* Secondary button - back navigation */
+.button-secondary {
+  color: #145A32;
+  background: #ffffff;
+  border: 2px solid #145A32;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.button-secondary:hover {
+  background: #f5f5f5;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.button-secondary:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Button icons */
+.button i {
+  font-size: 14px;
+}
+
+/* ========================================
+   FOOTER LINK
+   ======================================== */
+.footer-link {
+  margin-top: 16px;
+  text-align: center;
+  font-size: 12px;
+  color: #666;
+}
+
+.footer-link a {  
+  color: #145A32;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.footer-link a:hover {
+  color: #FFD700;
+  text-decoration: underline;
+}
+
+/* ========================================
+   FOOTER SECTION
+   UNCHANGED
+   ======================================== */
+.footer {
+  background-color: #333;
+  color: #ffffff;
+  padding: 20px 0;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+.footer .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.footer-bottom p {
+  font-size: 14px;
+  color: #cccccc;
+}
+
+/* ========================================
+   RESPONSIVE DESIGN
+   UPDATED: Better mobile and tablet experience
+   ======================================== */
+@media (max-width: 1200px) {
+  .card {
+    max-width: 95%;
+    padding: 18px 24px 20px;
+  }
+  
+  .grid-4 {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+}
+
+@media (max-width: 768px) {
+  .page {
+    padding: 80px 16px 20px;
+  }
+  
+  .card {
+    padding: 16px 20px 18px;
+  }
+  
+  .grid-4 {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  
+  .grid-2 {
+    grid-template-columns: 1fr;
+  }
+  
+  .form-header h1 {
+    font-size: 18px;
+  }
+  
+  .section-title {
+    font-size: 14px;
+  }
+  
+  .button-group {
+    flex-direction: column;
+  }
+  
+  .button {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .page {
+    padding: 70px 12px 16px;
+  }
+  
+  .card {
+    padding: 14px 16px 16px;
+  }
+  
+  .form-header i {
+    font-size: 24px !important;
+  }
+  
+  .form-header h1 {
+    font-size: 16px;
+  }
+  
+  .step-number {
+    width: 24px;
+    height: 24px;
+    font-size: 11px;
+  }
+  
+  .step-label {
+    font-size: 9px;
+  }
+}

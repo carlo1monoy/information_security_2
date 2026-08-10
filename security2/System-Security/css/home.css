@@ -1,0 +1,1118 @@
+/* ============================================
+   CSUCC SafeMart - Home Page Styles
+   Color Palette:
+   - Primary Green: #145A32
+   - Gold Accent: #FFD700
+   - White: #ffffff
+   - Dark Gray: #333
+   ============================================ */
+
+/* ============================================
+   GLOBAL STYLES
+   ============================================ */
+* { 
+  box-sizing: border-box; 
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  min-height: 100vh;
+  position: relative;
+  color: #333;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* ============================================
+   BACKGROUND IMAGE & OVERLAY
+   Edit: Change background image or overlay opacity here
+   ============================================ */
+.bg-image {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -2;
+}
+
+/* Green overlay on background */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  /* Edit: Adjust opacity (0.85, 0.75) to make background darker/lighter */
+  background: linear-gradient(135deg, rgba(20, 90, 50, 0.85) 0%, rgba(20, 90, 50, 0.75) 50%, transparent 100%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* ============================================
+   CONTAINER - Content Width Wrapper
+   ============================================ */
+.container {
+  width: 100%;
+  max-width: 1200px; /* Edit: Change max width if needed */
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* ============================================
+   HEADER - Fixed Navigation Bar
+   Edit: Change header colors, height, or logo styling here
+   ============================================ */
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  /* Edit: Header background gradient */
+  background: linear-gradient(135deg, #145A32 0%, #1a6d3d 100%);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  height: 70px; /* Edit: Adjust header height */
+}
+
+.header .container {
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 0 24px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Logo left, nav right */
+}
+
+/* Logo Styling */
+.logo {
+  font-size: 55px;
+  margin-left: 0;
+}
+.logo img {
+  display: block;
+  height: 1em;
+  width: auto;
+}
+
+/* ============================================
+   NAVIGATION LINKS
+   Edit: Link spacing, colors, hover effects
+   ============================================ */
+.navigation {
+  display: flex;
+  gap: 24px; /* Edit: Space between nav links */
+}
+
+.nav-link {
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 16px; /* Edit: Nav link font size */
+  font-weight: 500;
+  padding: 8px 16px; /* Edit: Link padding */
+  border-radius: 6px;
+  transition: all 0.3s ease;
+  line-height: 1;
+}
+
+/* Nav link hover effect */
+.nav-link:hover {
+  background-color: rgba(255, 215, 0, 0.2);
+  color: #FFD700;
+}
+
+.logout-btn {
+  background: transparent;
+  border: 2px solid #FFD700;
+  color: #ffffff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.logout-btn:hover {
+  background-color: #FFD700;
+  color: #145A32;
+  border-color: #FFD700;
+}
+
+/* ============================================
+   MAIN CONTENT - Page Container
+   ============================================ */
+.main-content {
+  padding-top: 100px; /* Edit: Space below fixed header */
+}
+
+/* ============================================
+   HERO SECTION - Main Banner
+   Edit: Hero text, button styles, visual cards
+   ============================================ */
+.hero {
+  min-height: 77vh; /* Edit: Hero section height */
+  display: flex;
+  align-items: center;
+  padding: 40px 0;
+  position: relative;
+}
+
+/* Left side - Text content */
+.hero-content {
+  flex: 1;
+  max-width: 600px;
+  padding-right: 40px;
+  padding-left: 55px; /* Edit: Adjust left spacing */
+}
+
+/* Badge above title */
+.hero-badge {
+  display: inline-block;
+  background: rgba(255, 215, 0, 0.2);
+  color: #FFD700;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 14px; /* Edit: Badge font size */
+  font-weight: 600;
+  margin-bottom: 25px;
+  border: 1px solid rgba(255, 215, 0, 0.3);
+}
+
+/* Personalized greeting */
+.hero-greeting {
+  margin-bottom: 20px;
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: all 0.6s ease;
+}
+
+.hero-greeting.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.greeting-text {
+  font-size: 30px;
+  font-weight: 600;
+  color: #ffffff;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  background: linear-gradient(135deg, #ffffff 0%, #FFD700 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+#userName {
+  font-weight: 700;
+  color: #FFD700;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+/* Main hero title */
+.hero-title {
+  font-size: 60px; /* Edit: Main title size */
+  color: #ffffff;
+  margin-bottom: 15px;
+  line-height: 1.1;
+  font-weight: 700;
+}
+
+/* Highlighted text (SafeMart) */
+.highlight {
+  color: #FFD700; /* Gold highlight */
+  position: relative;
+}
+
+/* Underline effect on highlight */
+.highlight::after {
+  content: "";
+  position: absolute;
+  bottom: 5px;
+  left: 0;
+  width: 100%;
+  height: 8px; /* Edit: Underline thickness */
+  background: rgba(255, 215, 0, 0.3);
+  z-index: -1;
+}
+
+/* Hero subtitle */
+.hero-subtitle {
+  font-size: 24px; /* Edit: Subtitle size */
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 25px;
+  font-weight: 500;
+}
+
+/* Hero description paragraph */
+.hero-description {
+  font-size: 18px; /* Edit: Description font size */
+  color: rgba(255, 255, 255, 0.85);
+  margin-bottom: 35px;
+  line-height: 1.6;
+}
+
+/* Button container */
+.hero-actions {
+  display: flex;
+  gap: 15px; /* Edit: Space between buttons */
+}
+
+/* ============================================
+   BUTTONS - Call-to-Action Styles
+   Edit: Button colors, sizes, hover effects
+   ============================================ */
+.btn {
+  display: inline-block;
+  padding: 14px 28px; /* Edit: Button padding */
+  border-radius: 8px; /* Edit: Button roundness */
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 16px; /* Edit: Button text size */
+  transition: all 0.3s ease;
+  text-align: center;
+  border: 2px solid transparent;
+}
+
+/* Primary button (Gold) */
+.btn-primary {
+  background: #FFD700;
+  color: #145A32;
+}
+
+.btn-primary:hover {
+  background: #e6c200; /* Edit: Hover color */
+  transform: translateY(-2px); /* Lift effect */
+  box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
+}
+
+/* Secondary button (Outline) */
+.btn-secondary {
+  background: transparent;
+  color: #ffffff;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+.btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.5);
+  transform: translateY(-2px);
+}
+
+/* Outline button variant */
+.btn-outline {
+  background: transparent;
+  color: #145A32;
+  border: 2px solid #145A32;
+}
+
+.btn-outline:hover {
+  background: rgba(20, 90, 50, 0.1);
+  transform: translateY(-2px);
+}
+
+/* ============================================
+   HERO VISUAL - Floating Product Cards
+   Edit: Card positions, sizes, animations
+   ============================================ */
+.hero-visual {
+  flex: 1;
+  position: relative;
+  height: 500px; /* Edit: Visual area height */
+}
+
+/* Individual floating cards */
+.floating-card {
+  position: absolute;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  transition: all 0.4s ease;
+  width: 275px; /* Edit: Card width */
+}
+
+.floating-card:hover {
+  transform: translateY(-5px); /* Lift on hover */
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+}
+
+/* Card 1 position - Clothes */
+.card-1 {
+  top: 10%; /* Edit: Vertical position */
+  right: 40%; /* Edit: Horizontal position */
+  animation: float 6s ease-in-out infinite;
+}
+
+/* Card 2 position - Electronics */
+.card-2 {
+  top: 40%;
+  right: 30%;
+  animation: float 6s ease-in-out infinite 2s; /* 2s delay */
+}
+
+/* Card 3 position - Shoes */
+.card-3 {
+  top: 20%;
+  right: 20%;
+  animation: float 6s ease-in-out infinite 4s; /* 4s delay */
+}
+
+/* Card image */
+.card-image {
+  display: block;
+  width: 100%;
+  height: 150px; /* Edit: Card image height */
+  object-fit: cover;
+}
+
+/* Card text content */
+.card-content {
+  padding: 16px; /* Edit: Card padding */
+}
+
+.card-content h4 {
+  font-size: 16px;
+  font-weight: 600;
+  color: #145A32;
+  margin-bottom: 4px;
+}
+
+.card-content p {
+  font-size: 14px;
+  color: #555;
+}
+
+/* Floating animation */
+@keyframes float {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-10px); } /* Edit: Float distance */
+  100% { transform: translateY(0); }
+}
+
+/* ============================================
+   CARD EXPANSION ANIMATIONS & STYLES
+   ============================================ */
+
+/* Initially hide expanded content */
+.card-expanded-content {
+  display: none;
+  padding: 0 14px 12px;
+  background: #ffffff;
+}
+
+/* Make cards clickable */
+.floating-card {
+  cursor: pointer;
+  user-select: none;
+}
+
+/* Expanded card state */
+.floating-card.expanded {
+  position: fixed !important;
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) scale(1.1) !important;
+  width: 420px;
+  max-height: 75vh;
+  z-index: 10000;
+  animation: none;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.3);
+  overflow-y: auto;
+  border-radius: 16px;
+}
+
+.floating-card.expanded .card-expanded-content {
+  display: block;
+  animation: fadeInContent 0.4s ease 0.2s both;
+}
+
+.floating-card.expanded .card-image {
+  height: 220px;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* Overlay backdrop */
+.card-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 9999;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.card-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Expanded header styles */
+.expanded-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #f0f0f0;
+  margin-bottom: 12px;
+}
+
+.expanded-header h3 {
+  font-size: 18px;
+  color: #145A32;
+  margin: 0;
+  font-weight: 700;
+}
+
+/* Close button */
+.close-card {
+  background: none;
+  border: none;
+  font-size: 28px;
+  color: #999;
+  cursor: pointer;
+  padding: 0;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: all 0.2s ease;
+}
+
+.close-card:hover {
+  background: #f5f5f5;
+  color: #145A32;
+  transform: scale(1.1);
+}
+
+/* Expanded details */
+.expanded-details {
+  margin-bottom: 14px;
+}
+
+.detail-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.detail-item:last-child {
+  margin-bottom: 0;
+}
+
+.detail-item i {
+  font-size: 18px;
+  color: #FFD700;
+  margin-top: 1px;
+  min-width: 18px;
+}
+
+.detail-item h5 {
+  font-size: 14px;
+  color: #145A32;
+  margin: 0 0 2px 0;
+  font-weight: 600;
+}
+
+.detail-item p {
+  font-size: 12px;
+  color: #666;
+  margin: 0;
+  line-height: 1.3;
+}
+
+/* Stats section */
+.expanded-stats {
+  display: flex;
+  gap: 16px;
+  padding-top: 12px;
+  border-top: 1px solid #f0f0f0;
+  justify-content: center;
+}
+
+.stat {
+  text-align: center;
+  flex: 1;
+}
+
+.stat-number {
+  display: block;
+  font-size: 22px;
+  font-weight: 700;
+  color: #145A32;
+  margin-bottom: 3px;
+}
+
+.stat-label {
+  font-size: 10px;
+  color: #777;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+/* Animation keyframes */
+@keyframes fadeInContent {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Card expansion animation */
+.floating-card.expanding {
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Smooth transitions for card elements */
+.floating-card .card-image,
+.floating-card .card-content {
+  transition: all 0.3s ease;
+}
+
+/* Mobile responsive adjustments */
+@media (max-width: 768px) {
+  .floating-card.expanded {
+    width: 90%;
+    max-width: 360px;
+    transform: translate(-50%, -50%) scale(1) !important;
+    max-height: 80vh;
+  }
+  
+  .floating-card.expanded .card-image {
+    height: 100px;
+  }
+  
+  .expanded-stats {
+    gap: 10px;
+  }
+  
+  .stat-number {
+    font-size: 18px;
+  }
+  
+  .expanded-header h3 {
+    font-size: 16px;
+  }
+  
+  .detail-item h5 {
+    font-size: 13px;
+  }
+  
+  .detail-item p {
+    font-size: 11px;
+  }
+}
+
+/* ============================================
+   SECTION HEADERS - Consistent Title Styling
+   Edit: Section title sizes and colors
+   ============================================ */
+.section-header {
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto 60px; /* Edit: Bottom spacing */
+}
+
+.section-header h2 {
+  font-size: 36px; /* Edit: Section title size */
+  color: rgba(0, 0, 0, 0.705);
+  margin-bottom: 15px;
+  position: relative;
+  display: inline-block;
+}
+
+/* Underline accent on section titles */
+.section-header h2::after {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px; /* Edit: Underline width */
+  height: 3px; /* Edit: Underline thickness */
+  background: #FFD700; /* Gold accent */
+}
+
+.section-header p {
+  font-size: 18px;
+  color: #555;
+  line-height: 1.6;
+}
+
+/* ============================================
+   FEATURES SECTION - Why Choose SafeMart
+   Edit: Card layouts, colors, hover effects
+   ============================================ */
+.features {
+  padding: 100px 0; /* Edit: Section padding */
+  background: rgba(255, 255, 255, 0.882); /* Semi-transparent white */
+}
+
+/* Feature cards grid */
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Edit: Min card width */
+  gap: 40px; /* Edit: Space between cards */
+}
+
+/* Individual feature card */
+.feature-card {
+  background: #ffffff;
+  padding: 40px 30px; /* Edit: Card padding */
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  text-align: center;
+  transition: all 0.4s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Top accent bar on feature cards */
+.feature-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px; /* Edit: Accent bar thickness */
+  background: linear-gradient(90deg, #FFD700, #145A32);
+}
+
+/* Feature card hover effect */
+.feature-card:hover {
+  transform: translateY(-10px); /* Lift effect */
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+}
+
+/* Feature card title */
+.feature-card h3 {
+  font-size: 22px; /* Edit: Feature title size */
+  color: #145A32;
+  margin-bottom: 15px;
+}
+
+/* Feature card description */
+.feature-card p {
+  color: #555;
+  line-height: 1.6;
+}
+
+/* ============================================
+   TESTIMONIALS SECTION - Student Reviews
+   Edit: Testimonial card styling
+   ============================================ */
+.testimonials {
+  padding: 100px 0; /* Edit: Section padding */
+  background: rgba(20, 90, 50, 0.05); /* Light green tint */
+}
+
+/* Testimonials grid */
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); /* Edit: Min card width */
+  gap: 40px; /* Edit: Space between testimonials */
+}
+
+/* Individual testimonial card */
+.testimonial-card {
+  background: #ffffff;
+  padding: 40px; /* Edit: Card padding */
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  position: relative;
+}
+
+/* Quotation mark decoration */
+.testimonial-card::before {
+  content: "";
+  position: absolute;
+  top: 20px;
+  left: 30px;
+  font-size: 80px; /* Edit: Quote mark size */
+  color: rgba(20, 90, 50, 0.1);
+  font-family: Georgia, serif;
+  line-height: 1;
+}
+
+/* Testimonial text */
+.testimonial-content {
+  margin-bottom: 25px;
+  position: relative;
+  z-index: 1;
+}
+
+.testimonial-content p {
+  font-size: 18px; /* Edit: Testimonial text size */
+  color: #555;
+  line-height: 1.6;
+  font-style: italic;
+}
+
+/* Author information */
+.testimonial-author {
+  display: flex;
+  flex-direction: column;
+}
+
+.author-name {
+  font-weight: 600;
+  color: #145A32;
+  margin-bottom: 5px;
+}
+
+.author-course {
+  font-size: 14px;
+  color: #777;
+}
+
+/* ============================================
+   FOOTER - Copyright Section
+   Edit: Footer background color, text styling
+   ============================================ */
+.footer {
+  background-color: #333; /* Edit: Footer background */
+  color: #ffffff;
+  padding: 24px 0; /* Edit: Footer padding */
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+.footer .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.footer-bottom p {
+  font-size: 14px; /* Edit: Copyright text size */
+  color: #cccccc;
+}
+
+/* ============================================
+   TESTIMONIALS SECTION - Horizontal Layout Design
+   ============================================ */
+.testimonials {
+  padding: 80px 0;
+  background: rgba(255, 255, 255, 0.493);
+  backdrop-filter: blur(10px);
+  position: relative;
+}
+
+.testimonials::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(20, 90, 50, 0.02) 0%, rgba(255, 215, 0, 0.02) 100%);
+  pointer-events: none;
+}
+
+.testimonials .section-header {
+  text-align: center;
+  margin-bottom: 50px;
+  position: relative;
+  z-index: 1;
+}
+
+.testimonials .section-header h2 {
+  font-size: 48px;
+  color: #145A32;
+  margin-bottom: 16px;
+  font-weight: 700;
+}
+
+.testimonials .section-header p {
+  font-size: 20px;
+  color: #666;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.testimonials-grid {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 30px;
+  max-width: 2000px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+/* Horizontal Card Layout */
+.testimonial-card {
+  background: #ffffff;
+  border-radius: 24px;
+  padding: 0;
+  box-shadow: 0 12px 50px rgba(0, 0, 0, 0.08);
+  position: relative;
+  overflow: hidden;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  display: flex;
+  min-height: 180px;
+  width: 700px;
+  flex: 0 0 700px;
+}
+
+.testimonial-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #145A32 0%, #FFD700 100%);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.testimonial-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 25px 80px rgba(0, 0, 0, 0.15);
+}
+
+.testimonial-card:hover::before {
+  transform: scaleX(1);
+}
+
+/* Left Side - Profile Picture */
+.testimonial-left {
+  width: 250px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, rgba(20, 90, 50, 0.05) 0%, rgba(255, 215, 0, 0.05) 100%);
+  position: relative;
+  padding: 40px;
+}
+
+.testimonial-left::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 1px;
+  height: 100%;
+  background: linear-gradient(to bottom, transparent 0%, rgba(20, 90, 50, 0.1) 50%, transparent 100%);
+}
+
+.author-avatar {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  position: relative;
+  padding: 4px;
+  background: linear-gradient(135deg, #145A32, #FFD700);
+  transition: all 0.4s ease;
+}
+
+.author-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  transition: transform 0.4s ease;
+  border: 4px solid #ffffff;
+}
+
+.testimonial-card:hover .author-avatar {
+  transform: scale(1.05);
+  box-shadow: 0 8px 30px rgba(20, 90, 50, 0.3);
+}
+
+.testimonial-card:hover .author-avatar img {
+  transform: scale(1.05);
+}
+
+/* Right Side - Content */
+.testimonial-right {
+  flex: 1;
+  padding: 35px 40px 35px 35px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+}
+
+.testimonial-icon {
+  width: 45px;
+  height: 45px;
+  background: linear-gradient(135deg, #145A32 0%, #1a6d3d 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  position: relative;
+  overflow: hidden;
+  align-self: flex-start;
+}
+
+.testimonial-icon i {
+  font-size: 20px;
+  color: #FFD700;
+  transform: rotate(180deg);
+}
+
+.testimonial-icon::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: rgba(255, 215, 0, 0.2);
+  border-radius: 50%;
+  transition: all 0.4s ease;
+  transform: translate(-50%, -50%);
+}
+
+.testimonial-card:hover .testimonial-icon::after {
+  width: 100%;
+  height: 100%;
+}
+
+.testimonial-content {
+  margin-bottom: 20px;
+  flex-grow: 1;
+}
+
+.testimonial-content p {
+  font-size: 17px;
+  line-height: 1.65;
+  color: #444;
+  font-style: italic;
+  position: relative;
+  margin: 0;
+}
+
+.testimonial-content p::before,
+.testimonial-content p::after {
+  content: '"';
+  font-size: 22px;
+  color: #FFD700;
+  font-weight: bold;
+  opacity: 0.8;
+}
+
+.testimonial-author {
+  align-self: flex-start;
+}
+
+.author-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.author-name {
+  font-size: 19px;
+  font-weight: 700;
+  color: #145A32;
+  margin-bottom: 5px;
+}
+
+.author-course {
+  font-size: 13px;
+  color: #888;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Animation for cards entering viewport */
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.testimonial-card:nth-child(1) {
+  animation: slideInLeft 0.8s ease forwards;
+}
+
+.testimonial-card:nth-child(2) {
+  animation: slideInRight 0.8s ease forwards;
+  animation-delay: 0.3s;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .testimonials-grid {
+    flex-direction: column;
+    gap: 30px;
+    padding: 0 20px;
+  }
+  
+  .testimonial-card {
+    flex-direction: column;
+    min-height: auto;
+  }
+  
+  .testimonial-left {
+    width: 100%;
+    padding: 25px;
+    background: linear-gradient(135deg, rgba(20, 90, 50, 0.03) 0%, rgba(255, 215, 0, 0.03) 100%);
+  }
+  
+  .testimonial-left::after {
+    display: none;
+  }
+  
+  .author-avatar {
+    width: 80px;
+    height: 80px;
+  }
+  
+  .testimonial-right {
+    padding: 25px 30px 30px 30px;
+  }
+  
+  .testimonials .section-header h2 {
+    font-size: 36px;
+  }
+  
+  .testimonial-content p {
+    font-size: 16px;
+  }
+  
+  .author-name {
+    font-size: 17px;
+  }
+}

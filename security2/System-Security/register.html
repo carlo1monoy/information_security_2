@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>CSUCC SafeMart Register</title>
+    <!-- LINK TO UPDATED CSS FILE -->
+    <link rel="stylesheet" href="css/register.css" />
+    <!-- REGISTER.JS - FORM VALIDATION AND MULTI-STEP NAVIGATION -->
+    <script src="js/register.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
+    />
+  </head>
+  <body>
+    <!-- BACKGROUND IMAGE - UNCHANGED -->
+    <img
+      class="bg-image"
+      src="img/CSUCC-Background.jpg"
+      alt="CSUCC Background"
+    />
+
+    <!-- HEADER SECTION - UNCHANGED -->
+    <header class="header">
+      <div class="container">
+        <div class="logo"><img src="img/CSUCCSafeMart-logo.png" alt="CSUCC SafeMart logo" /></div>
+        <nav class="navigation">
+          <a href="home.html" class="nav-link">Home</a>
+          <a href="login.html" class="nav-link">Log-in</a>
+        </nav>
+      </div>
+    </header>
+
+    <!-- MAIN PAGE CONTAINER -->
+    <main class="page">
+      <section class="card">
+        <div class="form-header">
+          <div class="header-title">
+            <i class="bi bi-person-plus"></i>
+            <h1>Create Account</h1>
+          </div>
+          <p class="subtitle">Join the CSUCC SafeMart community</p>
+        </div>
+
+        <!-- STEP PROGRESS INDICATOR -->
+        <div class="step-indicator">
+          <!-- Step 1: Personal, Address, Account -->
+          <div class="step active" data-step="1">
+            <div class="step-number">1</div>
+            <div class="step-label">Details</div>
+          </div>
+          <div class="step-line"></div>
+          <!-- Step 2 -->
+          <div class="step" data-step="2">
+            <div class="step-number">2</div>
+            <div class="step-label">Authentication</div>
+          </div>
+        </div>
+
+        <!-- REGISTRATION FORM -->
+        <form
+          class="form"
+          id="registerForm"
+          action="php/register.php"
+          method="POST"
+          novalidate
+        >
+          <!-- STEP 1 (NEW): PERSONAL + ADDRESS + ACCOUNT DETAILS -->
+          <div class="form-step active" data-step="1">
+            <!-- Personal Information Group -->
+            <div class="section-title">
+              <i class="bi bi-person-circle"></i> Personal Information
+            </div>
+
+            <!-- Row 1: ID No | First Name | Middle Name | Last Name -->
+            <div class="grid-4">
+              <div class="form-group">
+                <label for="idno"
+                  >ID Number <span class="required">*</span></label
+                >
+                <input
+                  type="text"
+                  id="idno"
+                  name="idno"
+                  maxlength="9"
+                  placeholder="xxxx-xxxx"
+                  inputmode="numeric"
+                  readonly
+                  required
+                />
+                <div class="error-message" id="idno-error"></div>
+              </div>
+              <div class="form-group">
+                <label for="firstname"
+                  >First Name <span class="required">*</span></label
+                >
+                <input type="text" id="firstname" name="firstname" required />
+                <div class="error-message" id="firstname-error"></div>
+              </div>
+              <div class="form-group">
+                <label for="mi"
+                  >Middle Name (<span class="optional">Optional</span>)</label
+                >
+                <input type="text" id="mi" name="mi" />
+                <div class="error-message" id="mi-error"></div>
+              </div>
+              <div class="form-group">
+                <label for="lastname"
+                  >Family Name <span class="required">*</span></label
+                >
+                <input type="text" id="lastname" name="lastname" required />
+                <div class="error-message" id="lastname-error"></div>
+              </div>
+            </div>
+
+            <!-- Row 2: Name Extension | Birthdate | Age | Sex -->
+            <div class="grid-4">
+              <div class="form-group">
+                <label for="extname"
+                  >Name Extension (<span class="optional">Optional</span
+                  >)</label
+                >
+                <div class="select-container">
+                  <select id="extname" name="extname">
+                    <option value="" disabled selected>Select</option>
+                    <option value="Jr.">Jr.</option>
+                    <option value="Sr.">Sr.</option>
+                    <option value="Other">Others</option>
+                  </select>
+                  <i class="bi bi-caret-down-fill"></i>
+                </div>
+                <div class="error-message" id="extname-error"></div>
+                <!-- Custom Extension Input - Shows when "Other" is selected, positioned below Name Extension -->
+                <div id="custom-extension-row" style="display: none">
+                  <input
+                    type="text"
+                    id="custom_extname"
+                    name="custom_extname"
+                    placeholder="Enter here (e.g., II, III, IV)"
+                    maxlength="5"
+                  />
+                  <div class="error-message" id="custom-extname-error"></div>
+                </div>
+              </div>
+              <div class="form-group combined-date-age">
+                <label for="birthdate"
+                  >Birthdate & Age<span class="required">*</span></label
+                >
+                <div class="date-age-container">
+                  <div class="birthdate-section">
+                    <input
+                      type="date"
+                      id="birthdate"
+                      name="birthdate"
+                      required
+                    />
+                  </div>
+                  <div class="age-section">
+                    <span class="age-value" id="age-display">--</span>
+                    <input
+                      type="number"
+                      id="age"
+                      name="age"
+                      readonly
+                      required
+                      style="display: none"
+                    />
+                  </div>
+                </div>
+                <div class="error-message" id="birthdate-error"></div>
+                <div class="error-message" id="age-error"></div>
+              </div>
+              <div class="form-group">
+                <label for="sex">Sex <span class="required">*</span></label>
+                <div class="select-container">
+                  <select id="sex" name="sex" required>
+                    <option value="" disabled selected>Select</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                  </select>
+                  <i class="bi bi-caret-down-fill"></i>
+                </div>
+                <div class="error-message" id="sex-error"></div>
+              </div>
+            </div>
+
+            <!-- Address Information Group -->
+            <div class="section-title">
+              <i class="bi bi-geo-alt-fill"></i> Address Information
+            </div>
+            <!-- Row: Purok | Barangay | Municipality | Province -->
+            <div class="grid-4">
+              <div class="form-group">
+                <label for="purok"
+                  >Purok/Street <span class="required">*</span></label
+                >
+                <input type="text" id="purok" name="purok" required />
+                <div class="error-message" id="purok-error"></div>
+              </div>
+              <div class="form-group">
+                <label for="barangay"
+                  >Barangay <span class="required">*</span></label
+                >
+                <input type="text" id="barangay" name="barangay" required />
+                <div class="error-message" id="barangay-error"></div>
+              </div>
+              <div class="form-group">
+                <label for="municipality"
+                  >Municipality/City <span class="required">*</span></label
+                >
+                <input
+                  type="text"
+                  id="municipality"
+                  name="municipality"
+                  required
+                />
+                <div class="error-message" id="municipality-error"></div>
+              </div>
+              <div class="form-group">
+                <label for="province"
+                  >Province <span class="required">*</span></label
+                >
+                <input type="text" id="province" name="province" required />
+                <div class="error-message" id="province-error"></div>
+              </div>
+            </div>
+            <!-- Row: Country | Zip Code -->
+            <div class="grid-4">
+              <div class="form-group">
+                <label for="country"
+                  >Country <span class="required">*</span></label
+                >
+                <input type="text" id="country" name="country" required />
+                <div class="error-message" id="country-error"></div>
+              </div>
+              <div class="form-group">
+                <label for="zip"
+                  >Zip Code <span class="required">*</span></label
+                >
+                <input
+                  type="text"
+                  id="zip"
+                  name="zip"
+                  maxlength="4"
+                  inputmode="numeric"
+                  pattern="\\d{4}"
+                  required
+                />
+                <div class="error-message" id="zip-error"></div>
+              </div>
+            </div>
+
+            <!-- Account Details Group -->
+            <div class="section-title">
+              <i class="bi bi-person-badge-fill"></i> Account Details
+            </div>
+            <!-- Row: Username | Email | Password | Re-enter Password -->
+            <div class="grid-4">
+              <div class="form-group">
+                <label for="username"
+                  >Username <span class="required">*</span></label
+                >
+                <input type="text" id="username" name="username" required />
+                <div class="username-status" id="username-status"></div>
+                <div class="error-message" id="username-error"></div>
+              </div>
+              <div class="form-group">
+                <label for="email"
+                  >Email Address <span class="required">*</span></label
+                >
+                <input type="email" id="email" name="email" required />
+                <div class="error-message" id="email-error"></div>
+              </div>
+              <div class="form-group">
+                <label for="password"
+                  >Password <span class="required">*</span></label
+                >
+                <div class="input-with-toggle">
+                  <input
+                    type="password"
+                    id="password"
+                    name="password"
+                    required
+                  />
+                  <button
+                    type="button"
+                    class="toggle-password"
+                    id="password-toggle"
+                    aria-label="Show password"
+                    title="Show password"
+                  >
+                    <i class="bi bi-eye-fill" id="password-toggle-icon"></i>
+                  </button>
+                </div>
+                <div
+                  class="password-strength-container"
+                  id="password-strength-container"
+                  style="display: none"
+                >
+                  <div class="password-strength-bar">
+                    <div class="strength-segment"></div>
+                    <div class="strength-segment"></div>
+                    <div class="strength-segment"></div>
+                  </div>
+                  <div
+                    class="password-strength-label"
+                    id="password-strength-label"
+                  ></div>
+                </div>
+                <div class="error-message" id="password-error"></div>
+              </div>
+              <div class="form-group">
+                <label for="password2"
+                  >Re-enter Password <span class="required">*</span></label
+                >
+                <div class="input-with-toggle">
+                  <input
+                    type="password"
+                    id="password2"
+                    name="password2"
+                    required
+                  />
+                  <button
+                    type="button"
+                    class="toggle-password"
+                    id="password2-toggle"
+                    aria-label="Show password"
+                    title="Show password"
+                  >
+                    <i class="bi bi-eye-fill" id="password2-toggle-icon"></i>
+                  </button>
+                </div>
+                <div
+                  class="password-match-container"
+                  id="password-match-container"
+                  style="display: none"
+                >
+                  <div class="password-match-bar">
+                    <div class="match-segment"></div>
+                    <div class="match-segment"></div>
+                    <div class="match-segment"></div>
+                  </div>
+                  <div
+                    class="password-match-label"
+                    id="password-match-label"
+                  ></div>
+                </div>
+                <div class="error-message" id="password2-error"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- STEP 2: AUTHENTICATION QUESTIONS (Security) -->
+          <div class="form-step" data-step="2">
+            <div class="section-title">
+              <i class="bi bi-shield-lock-fill"></i> Authentication Questions
+            </div>
+
+            <!-- QUESTION 1 -->
+            <div class="auth-row">
+              <div class="auth-row-header">
+                <label for="auth_question1"
+                  >Authentication Question 1
+                  <span class="required">*</span></label
+                >
+                <label for="auth_answer1"
+                  >Your Answer <span class="required">*</span></label
+                >
+              </div>
+              <div class="auth-row-divider"></div>
+              <div class="auth-row-fields">
+                <div class="auth-field">
+                  <div class="select-container">
+                    <select
+                      class="auth-control"
+                      id="auth_question1"
+                      name="auth_question1"
+                      required
+                    >
+                      <option value="" disabled selected>
+                        Select a question
+                      </option>
+                      <option value="Who is your best friend in Elementary?">
+                        Who is your best friend in Elementary?
+                      </option>
+                      <option value="What is the name of your favorite pet?">
+                        What is the name of your favorite pet?
+                      </option>
+                      <option value="Who is your favorite teacher in high school?">
+                        Who is your favorite teacher in high school?
+                      </option>
+                    </select>
+                    <i class="bi bi-caret-down-fill"></i>
+                  </div>
+                  <div class="error-message" id="auth_question1-error"></div>
+                </div>
+                <div class="auth-field">
+                  <div class="input-with-toggle">
+                    <input
+                      class="auth-control"
+                      type="password"
+                      id="auth_answer1"
+                      name="auth_answer1"
+                      required
+                    />
+                    <button
+                      type="button"
+                      class="toggle-password"
+                      id="auth_answer1-toggle"
+                      aria-label="Show answer"
+                      title="Show answer"
+                    >
+                      <i
+                        class="bi bi-eye-fill"
+                        id="auth_answer1-toggle-icon"
+                      ></i>
+                    </button>
+                  </div>
+                  <div class="error-message" id="auth_answer1-error"></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- QUESTION 2 -->
+            <div class="auth-row">
+              <div class="auth-row-header">
+                <label for="auth_question2"
+                  >Authentication Question 2
+                  <span class="required">*</span></label
+                >
+                <label for="auth_answer2"
+                  >Your Answer <span class="required">*</span></label
+                >
+              </div>
+              <div class="auth-row-divider"></div>
+              <div class="auth-row-fields">
+                <div class="auth-field">
+                  <div class="select-container">
+                    <select
+                      class="auth-control"
+                      id="auth_question2"
+                      name="auth_question2"
+                      required
+                    >
+                      <option value="" disabled selected>
+                        Select a question
+                      </option>
+                      <option value="What was your childhood nickname?">
+                        What was your childhood nickname?
+                      </option>
+                      <option value="What is your favorite color?">
+                        What is your favorite color?
+                      </option>
+                      <option value="What is your favorite food to cook yourself?">
+                        What is your favorite food to cook yourself?
+                      </option>
+                    </select>
+                    <i class="bi bi-caret-down-fill"></i>
+                  </div>
+                  <div class="error-message" id="auth_question2-error"></div>
+                </div>
+                <div class="auth-field">
+                  <div class="input-with-toggle">
+                    <input
+                      class="auth-control"
+                      type="password"
+                      id="auth_answer2"
+                      name="auth_answer2"
+                      required
+                    />
+                    <button
+                      type="button"
+                      class="toggle-password"
+                      id="auth_answer2-toggle"
+                      aria-label="Show answer"
+                      title="Show answer"
+                    >
+                      <i
+                        class="bi bi-eye-fill"
+                        id="auth_answer2-toggle-icon"
+                      ></i>
+                    </button>
+                  </div>
+                  <div class="error-message" id="auth_answer2-error"></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- QUESTION 3 -->
+            <div class="auth-row">
+              <div class="auth-row-header">
+                <label for="auth_question3"
+                  >Authentication Question 3
+                  <span class="required">*</span></label
+                >
+                <label for="auth_answer3"
+                  >Your Answer <span class="required">*</span></label
+                >
+              </div>
+              <div class="auth-row-divider"></div>
+              <div class="auth-row-fields">
+                <div class="auth-field">
+                  <div class="select-container">
+                    <select
+                      class="auth-control"
+                      id="auth_question3"
+                      name="auth_question3"
+                      required
+                    >
+                      <option value="" disabled selected>
+                        Select a question
+                      </option>
+                      <option value="What is your favorite outdoor activity or sport?">
+                        What is your favorite outdoor activity or sport?
+                      </option>
+                      <option value="What is your favorite subject in school?">
+                        What is your favorite subject in school?
+                      </option>
+                      <option value="What brand was your first mobile phone?">
+                        What brand was your first mobile phone?
+                      </option>
+                    </select>
+                    <i class="bi bi-caret-down-fill"></i>
+                  </div>
+                  <div class="error-message" id="auth_question3-error"></div>
+                </div>
+                <div class="auth-field">
+                  <div class="input-with-toggle">
+                    <input
+                      class="auth-control"
+                      type="password"
+                      id="auth_answer3"
+                      name="auth_answer3"
+                      required
+                    />
+                    <button
+                      type="button"
+                      class="toggle-password"
+                      id="auth_answer3-toggle"
+                      aria-label="Show answer"
+                      title="Show answer"
+                    >
+                      <i
+                        class="bi bi-eye-fill"
+                        id="auth_answer3-toggle-icon"
+                      ></i>
+                    </button>
+                  </div>
+                  <div class="error-message" id="auth_answer3-error"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- FORM-LEVEL ERROR MESSAGE -->
+          <div class="error-message" id="form-error"></div>
+
+          <!-- NAVIGATION BUTTONS - DYNAMICALLY SHOWN BASED ON STEP -->
+          <div class="button-group">
+            <!-- BACK BUTTON - HIDDEN ON FIRST STEP -->
+            <button type="button" class="button button-secondary" id="prevBtn">
+              <i class="bi bi-arrow-left"></i> Back
+            </button>
+
+            <!-- NEXT BUTTON - SHOWN ON STEP 1 -->
+            <button type="button" class="button button-primary" id="nextBtn">
+              Next <i class="bi bi-arrow-right"></i>
+            </button>
+
+            <!-- SUBMIT BUTTON - SHOWN ONLY ON LAST STEP -->
+            <button type="submit" class="button button-primary" id="submitBtn">
+              <i class="bi bi-check-circle"></i> Create Account
+            </button>
+          </div>
+
+          <!-- FOOTER LINK - LOGIN ALTERNATIVE -->
+          <div class="footer-link">
+            Already have an account? <a href="login.html">Login here</a>
+          </div>
+        </form>
+      </section>
+    </main>
+
+    <!-- FOOTER SECTION - UNCHANGED -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-bottom">
+          <p>
+            &copy; 2025 CSUCC SafeMart. All rights reserved. A secure
+            marketplace for the CSUCC community.
+          </p>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

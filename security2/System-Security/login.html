@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>CSUCC SafeMart Login</title>
+    <link rel="stylesheet" href="css/login.css" />
+    <script src="js/login.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
+    />
+  </head>
+  <body>
+    <img
+      class="bg-image"
+      src="img/CSUCC-Background.jpg"
+      alt="CSUCC Background"
+    />
+    <header class="header">
+      <div class="container">
+        <div class="logo">
+          <img src="img/CSUCCSafeMart-logo.png" alt="CSUCC SafeMart logo" />
+        </div>
+        <nav class="navigation">
+          <a href="home.html" class="nav-link">Home</a>
+          <a href="register.html" class="nav-link">Register</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="page">
+      <section class="card">
+        <div class="card-layout">
+          <div class="card-image">
+            <div class="card-image-logo">
+              <img src="img/CSUCCSafeMart-logo.png" alt="CSUCC SafeMart" />
+            </div>
+            <div class="card-image-content">
+              <img src="img/chael-pic-OG.png" alt="Welcome illustration" />
+            </div>
+            <div class="card-image-icon">
+             <i class="bi bi-bag-heart"></i>
+            </div>
+            <div class="decorative-elements">
+              <div class="circle circle-1"></div>
+              <div class="circle circle-2"></div>
+              <div class="circle circle-3"></div>
+            </div>
+          </div>
+          <div class="card-content">
+            <div class="form-header">
+              <div class="header-title">
+                <i class="bi bi-box-arrow-in-right"></i>
+                <h1>Welcome</h1>
+              </div>
+              <p class="subtitle">Sign in to your CSUCC SafeMart account</p>
+            </div>
+
+            <form class="form" id="loginForm" novalidate>
+              <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" required />
+                <div class="error-message" id="username-error"></div>
+              </div>
+
+              <div class="form-group password-group">
+                <label for="password">Password</label>
+                <div class="input-with-toggle">
+                  <input
+                    type="password"
+                    id="password"
+                    name="password"
+                    required
+                  />
+                  <button
+                    type="button"
+                    class="toggle-password"
+                    id="password-toggle"
+                    aria-label="Show password"
+                    title="Show password"
+                  >
+                    <i class="bi bi-eye-fill" id="password-toggle-icon"></i>
+                  </button>
+                </div>
+                <span id="forgot-password-link"
+                  >Forgot password?
+                  <a href="forgot-password.html" class="link"
+                    >Reset here</a
+                  ></span
+                >
+                <div class="error-message" id="password-error"></div>
+              </div>
+
+              <div class="error-message" id="login-error"></div>
+
+              <button type="submit" class="button" id="login-button">
+                Sign In
+              </button>
+              <div class="timer-message" id="timer-message"></div>
+
+              <div class="footer-link">
+                Don't have an account?
+                <a href="register.html" id="register-link">Register here</a>
+              </div>
+            </form>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-bottom">
+          <p>
+            &copy; 2025 CSUCC SafeMart. All rights reserved. A secure
+            marketplace for the CSUCC community.
+          </p>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
